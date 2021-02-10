@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="Hello World, CodingFool">
+    <meta name="keywords" content="搭建自己的私有云盘, CodingFool">
     <meta name="description" content="专注于Web,分享生活,分享知识 ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>Hello World | CodingFool</title>
+    <title>搭建自己的私有云盘 | CodingFool</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -204,12 +204,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/12.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/7.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">Hello World</h1>
+                    <h1 class="description center-align post-title">搭建自己的私有云盘</h1>
                 </div>
             </div>
         </div>
@@ -337,7 +337,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-10
+                    2020-02-03
                 </div>
                 
 
@@ -346,7 +346,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    73
+                    989
                 </div>
                 
 
@@ -368,19 +368,70 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo new <span class="token string">"My New Post"</span>
+                <p>使用的系统是Linux Centos7.6<br>1、搭建LAMP网站架构<br>2、升级PHP5.4到PHP5.6<br>3、安装PHP扩展模块<br>4、实战1：使用Nextcloud建立属于自己私有的云存储网盘（百度网盘）<br>5、实战2：实现加密对外分享文件和在线播放小电影： 桃谷.avi</p>
+<hr>
+<h2 id="Nextcloud概述："><a href="#Nextcloud概述：" class="headerlink" title="Nextcloud概述："></a>Nextcloud概述：</h2><p>Nextcloud 一款文件主机服务软件，就是我们平时使用的云存储，不过这是在自己主机的服务器上建立属于自己的私有云，Nextcloud　使用AGPLv3协议发布。本项目是基于PHP和SQLite，MySQL，Oracle或PostgreSQL数据库，所以它可以运行在所有的平台上<br>nextcloud 是一个开源免费专业的私有云存储项目，它能帮你快速在个人电脑或服务器上架设一套专属的私有云文件同步网盘，可以像 百度云那样实现文件跨平台同步、共享、版本控制、团队协作等等。nextcloud 能让你将所有的文件掌握在自己的手中，只要你的设备性能和空间充足，那么用起来几乎没有任何限制。<br>nextcloud 跨平台支持 Windows、Mac、Android、iOS、Linux 等平台，而且还提供了网页版和 WebDAV 形式访问，因此你可以在任何电脑、手机上都能轻松获取你的文件了。</p>
+<hr>
+<h2 id="内容"><a href="#内容" class="headerlink" title="内容"></a>内容</h2><h2 id="1、需要LAMP架构"><a href="#1、需要LAMP架构" class="headerlink" title="1、需要LAMP架构"></a>1、需要LAMP架构</h2><pre class="line-numbers language-shell"><code class="language-shell">  yum install  -y  httpd php php-mysql mariadb-server mariadb sqlite php-dom php-mbstring php-gd php-pdo
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo server
+<hr>
+<p>注：<br>httpd #apache web 服务器<br>php #php<br>mariadb-server mariadb # 从centos 7开始，系统中自带的mysql数据库，更名为 mariadb-server 。<br>PDO（PHP数据对象） 是一个轻量级的、具有兼容接口的PHP数据连接拓展</p>
+<hr>
+<h2 id="2、开LAMP相关服务"><a href="#2、开LAMP相关服务" class="headerlink" title="2、开LAMP相关服务"></a>2、开LAMP相关服务</h2><pre class="line-numbers language-shell"><code class="language-shell"> systemctl start httpd.service  
+ systemctl start mariadb.service
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<hr>
+<h2 id="3、关闭防火墙-和selinux"><a href="#3、关闭防火墙-和selinux" class="headerlink" title="3、关闭防火墙 和selinux"></a>3、关闭防火墙 和selinux</h2><pre class="line-numbers language-shell"><code class="language-shell"> getenforce
+ Disabled
+ iptables -F
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<hr>
+<p>4、在搭建好的LAMP环境上部署 nextcloud 站点<br>下载解压源码包，并移动到网站根目录下<br>通过xshell中的rz上传nextcloud-10.0.1.zip 到linux系统中：</p>
+<hr>
+<pre class="line-numbers language-shell"><code class="language-shell"> unzip nextcloud-10.0.1.zip
+ cp -r nextcloud/*   /var/www/html/
+ chown -R apache.apache /var/www/html/
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<hr>
+<p>5、在MariaDB数据库中创建nextcloud的数据库：<br>设置mysql的root密码：</p>
+<hr>
+<pre class="line-numbers language-shell"><code class="language-shell"> mysqladmin -u root password "123456"
+ mysql -u root -p123456
+ MariaDB [(none)]> create database nextcloud;    #创建nextcloud数据库:
+ exit
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h1 id="三、通过web界面安装nextcloud"><a href="#三、通过web界面安装nextcloud" class="headerlink" title="三、通过web界面安装nextcloud"></a>三、通过web界面安装nextcloud</h1><hr>
+<pre><code> http://192.168.x.xx/index.php
+</code></pre>
+<hr>
+<p>但是网页提示当前php版本是5.4，要求高于7.0，所以要更新php版本</p>
+<h2 id="更新php"><a href="#更新php" class="headerlink" title="更新php"></a>更新php</h2><p>更新源</p>
+<hr>
+<pre class="line-numbers language-shell"><code class="language-shell">rpm -Uvh https://mirror.webtatic.com/yum/el7/epel-release.rpm   
+rpm -Uvh https://mirror.webtatic.com/yum/el7/webtatic-release.rpm
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>移除系统自带的php-common</p>
+<hr>
+<pre class="line-numbers language-shell"><code class="language-shell">yum remove php-common -y
 <span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo generate
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><pre class="line-numbers language-bash"><code class="language-bash">$ hexo deploy
-<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
+<p>安装依赖包</p>
+<hr>
+<pre class="line-numbers language-shell"><code class="language-shell">yum install -y php72w php72w-opcache php72w-xml php72w-mcrypt php72w-gd php72w-devel php72w-mysql php72w-intl php72w-mbstring
+php -v #查看版本
+ systemctl restart httpd #重启apache  让php5.6 的配置文件生效
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<hr>
+<h2 id="扩展"><a href="#扩展" class="headerlink" title="扩展:"></a>扩展:</h2><p>SQLite数据库概述：<br>SQLite是一款轻型的数据库，是遵守ACID的关系型数据库管理系统，它包含在一个相对小的C库中。它是D.RichardHipp建立的公有领域项目。它的设计目标是嵌入式的，而且目前已经在很多嵌入式产品中使用了它，它占用资源非常的低，在嵌入式设备中，可能只需要几百K的内存就够了。</p>
+<hr>
+<pre class="line-numbers language-shell"><code class="language-shell"> 用户名： admin   密码： 123456
+ 接下来输入数据库的用户： root  密码： 123456 数据库名： nextcloud
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<hr>
+<h2 id="接下来自动化安装"><a href="#接下来自动化安装" class="headerlink" title="接下来自动化安装"></a>接下来自动化安装</h2><p>安装完后，使用admin 密码： 123456 登录系统<br>安装好之后<br>在web版本上上传文档<br>上传视频，实现在播放<br>分享我的文档<br>输入正确的密码就可以了<br>在线播放或下载都可以</p>
+<hr>
+<h2 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h2><p>比如files相关的<br>加载插件右击选项<br>可以进行相应的操作，更多插件可以去发现哟。。。。。！</p>
+<p>来源: MX<br>文章作者: Ming xin<br>文章链接: <a target="_blank" rel="noopener" href="https://mx142.cn/2020/07/01/4/">https://mx142.cn/2020/07/01/4/</a><br>本文章著作权归作者所有，任何形式的转载都请注明出处。</p>
 
                 
             </div>
@@ -407,7 +458,7 @@
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://adg666.gitee.io/2021/02/10/hello-world/">https://adg666.gitee.io/2021/02/10/hello-world/</a>
+                    <a href="https://adg666.gitee.io/2020/02/03/da-jian-zi-ji-de-si-you-yun-pan/">https://adg666.gitee.io/2020/02/03/da-jian-zi-ji-de-si-you-yun-pan/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -488,48 +539,9 @@
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
-            <div class="article-badge left-badge text-color">
-                <i class="far fa-dot-circle"></i>&nbsp;本篇
-            </div>
-            <div class="card">
-                <a href="/2021/02/10/hello-world/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="Hello World">
-                        
-                        <span class="card-title">Hello World</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                            <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-10
-                            </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            ADG
-                            
-                        </span>
-                    </div>
-                </div>
-
-                
-            </div>
-        </div>
-        
-        
         <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
             <div class="card">
                 <a href="/2021/01/31/hexo-github-da-jian-bo-ke-chao-ji-xiang-xi-ban-jing-xi-ru-wei/">
                     <div class="card-image">
@@ -547,8 +559,45 @@
                         
                     </div>
                     <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-01-31
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            ADG
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2019/10/28/404/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/8.jpg" class="responsive-img" alt="404">
+                        
+                        <span class="card-title">404</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-01-31
+                                <i class="far fa-clock fa-fw icon-date"></i>2019-10-28
                             </span>
                         <span class="publish-author">
                             
