@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search> 
+  
+  
+    
+    <entry>
+      <title></title>
+      <link href="2021/02/10/shang-hai-dian-xin-suo-fa-zhong-xing-f450g-guang-mao-po-jie-fang-fa/"/>
+      <url>2021/02/10/shang-hai-dian-xin-suo-fa-zhong-xing-f450g-guang-mao-po-jie-fang-fa/</url>
+      
+        <content type="html"><![CDATA[<h1 id="上海电信所发中兴F450G光猫破解方法"><a href="#上海电信所发中兴F450G光猫破解方法" class="headerlink" title="上海电信所发中兴F450G光猫破解方法"></a><strong>上海电信所发中兴F450G光猫破解方法</strong></h1><p>今天电信把14年发的旧的烽火HG220G光猫换成了新的中兴F450G光猫。然而useradmin权限依旧很少，没有IP-MAC绑定，没有端口映射，这怎么行，必定还是要像之前那个光猫一样破解掉，记录一下破解过程。</p><p>根据网上的一些资料，连上光纤后光猫会自动关闭Telnet，而Telnet是唯一不拆机破解光猫的途径。好在机身的复位键不会清除注册信息，于是首先果断</p><p>1、拔光纤，长按复位键</p><p>2、电脑Telnet连接光猫，使用用户名root，密码Zte521登录</p><p><a href="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005161451.jpg"><img src="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005161451-300x119.jpg" alt="《上海电信所发中兴F450G光猫破解方法》"></a></p><p>很棒，连接成功。</p><p><a href="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005161509.jpg"><img src="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005161509-300x111.jpg" alt="《上海电信所发中兴F450G光猫破解方法》"></a></p><p>3、执行sendcmd 1 DB p DevAuthInfo即可查看telecomadmin超级管理员密码</p><blockquote><Tbl name=”DevAuthInfo” RowCount=”6″><Row No=”0″><DM name=”ViewName” val=”IGD.AU1″/><DM name=”Enable” val=”1″/><DM name=”IsOnline” val=”0″/><DM name=”AppID” val=”1″/><DM name=”User” val=”telecomadmin”/><DM name=”Pass” val=”ND……</blockquote><p>使用此密码登录，又见到了熟悉的超级管理员界面(´▽`) 舒爽</p><p><a href="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005163156.jpg"><img src="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005163156-300x124.jpg" alt="《上海电信所发中兴F450G光猫破解方法》"></a></p><p>4、不过为了长久之计，以后连上光纤也要能Telnet登录随时管理，于是执行sendcmd 1 DB set TelnetCfg 0 Lan_EnableAfterOlt 1，可以看到前后这个值有所变化</p><p><a href="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005161835.jpg"><img src="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005161835.jpg" alt="《上海电信所发中兴F450G光猫破解方法》"></a></p><p>5、根据指令格式我推测出了修改Telnet密码的指令<img src="https://tiny.zhouii.com/qqemoji/e248.gif" alt="《上海电信所发中兴F450G光猫破解方法》">sendcmd 1 DB set TelnetCfg 0 TSLan_UPwd root</p><p><a href="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005161913.jpg"><img src="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005161913-300x200.jpg" alt="《上海电信所发中兴F450G光猫破解方法》"></a></p><p>6、修改完绝对不能忘了执行sendcmd 1 DB save和sendcmd 1 DB reboot指令进行保存</p><p><a href="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005162350.jpg"><img src="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005162350-300x283.jpg" alt="《上海电信所发中兴F450G光猫破解方法》"></a></p><p>7、重启光猫，在连上光纤能上网的情况下也能Telnet登录光猫啦使用的还是修改后的密码root</p><p><a href="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005163048.jpg"><img src="https://www.zhouii.com/blog/wp-content/uploads/2018/10/20181005163048.jpg" alt="《上海电信所发中兴F450G光猫破解方法》"></a></p><p>其实光猫是支持telnet登录的，并且这个功能默认开启，很可惜的是一旦插上光纤后，这个功能就会自动关闭。</p><p>所以在上面的基础之上，还可以做一些更多的设置，方便日后的折腾，参考下面这些命令</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">1，打开telnet</span><br><span class="line">sendcmd 1 DB set TelnetCfg 0 TS_Enable 1</span><br><span class="line">2，打开23端口</span><br><span class="line">sendcmd 1 DB set PortControl 3 PortEnable 1</span><br><span class="line">3，局域网登录允许</span><br><span class="line">sendcmd 1 DB set TelnetCfg 0 Lan_Enable 1</span><br><span class="line">4，插上光纤后不自动关闭telnet</span><br><span class="line">sendcmd 1 DB set TelnetCfg 0 Lan_EnableAfterOlt 1</span><br><span class="line">5，最多能够登录5个用户，避免被锁死</span><br><span class="line">sendcmd 1 DB set TelnetCfg 0 Max_Con_Num 5</span><br><span class="line">6，破解最大用户数(本例设置为32，然后关闭了限制)</span><br><span class="line">sendcmd 1 DB set CltLmt 8 Max 32</span><br><span class="line">sendcmd 1 DB set CltLmt 8 Enable 0</span><br><span class="line">7，无论进行了任何指令设置，需要使用以下命令保存配置</span><br><span class="line">sendcmd 1 DB save</span><br><span class="line">sendcmd 1 DB reboot</span><br></pre></td></tr></table></figure><p>打开telenet后，日后可以直接用telnet登录路由器，用户名是<code>root</code>，密码是<code>Zte521</code>。</p><p>此外还有额外的命令我没有操作，有兴趣的自己研究下咯</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">破解打开网页自动跳转LOID注册页面（适用于手工配置，无法LOID注册的同学）</span><br><span class="line">sendcmd 1 DB set PDTCTUSERINFO 0 Status 0</span><br><span class="line">sendcmd 1 DB set PDTCTUSERINFO 0 Result 1</span><br></pre></td></tr></table></figure><p>转自 <a href="https://www.zhouii.com/2018/10/646.html">01的翼</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="2021/02/10/hao-yong-de-ui-su-cai-wang-zhan-shou-cang/"/>
+      <url>2021/02/10/hao-yong-de-ui-su-cai-wang-zhan-shou-cang/</url>
+      
+        <content type="html"><![CDATA[<p><a href="https://material.io/">Homepage – Material Design</a></p><p>[Android Asset Studio – Action bar/tab icon generator](<a href="https://romannurik.github.io/AndroidAssetStudio/icons-actionbar.html#source.type=clipart&amp;source.clipart=add_circle&amp;source.space.trim=0&amp;source.space.pad=0&amp;name=ic_action_add_circle&amp;theme=light&amp;color=rgba">https://romannurik.github.io/AndroidAssetStudio/icons-actionbar.html#source.type=clipart&amp;source.clipart=add_circle&amp;source.space.trim=0&amp;source.space.pad=0&amp;name=ic_action_add_circle&amp;theme=light&amp;color=rgba</a>(33%2C 150%2C 243%2C 0.6))</p><p><a href="https://icons8.cn/icons/material">免费Material Design图标</a></p><p><a href="https://www.iconfont.cn/search/index?q=%E7%94%BB%E7%AC%94">Iconfont-阿里巴巴矢量图标库（非常好用，推荐）</a></p><p><a href="https://www.uplabs.com/posts/tool/xd">Adobe XD Downloadable Resources – UpLabs</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="2021/02/10/google-play-li-pin-qia-ji-he/"/>
+      <url>2021/02/10/google-play-li-pin-qia-ji-he/</url>
+      
+        <content type="html"><![CDATA[<p>美国礼品卡</p><p>0PT6 2EZZ GP05 SCL1 N03N</p><p>2M7J 2LPC U7K6 2QK6 U54G</p><p>日本礼品卡</p><p>1TPCKXULTB6M4Y5</p><p>2ZL03X08XF50PD21LBM3</p><p>巴西地区GooglePlay礼品卡</p><p>2BNB FCAG 5BRS 47N1 L592</p><p>香港谷歌礼品卡</p><p>7EX9 6W9X GRNG T90E 8WJ6</p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title></title>
+      <link href="2021/02/10/deng-zhi-xian-fa-jie-yi-lei-xiang-liang-ti/"/>
+      <url>2021/02/10/deng-zhi-xian-fa-jie-yi-lei-xiang-liang-ti/</url>
+      
+        <content type="html"><![CDATA[<h1 id="等值线法解一类向量题"><a href="#等值线法解一类向量题" class="headerlink" title="等值线法解一类向量题"></a>等值线法解一类向量题</h1><p> 2019年9月28日 0条评论 138次阅读 0人点赞</p><p><img src="http://p0.ifengimg.com/pmop/2018/0726/AAE970F672A2CF98432D62F4F45EBF44AEA1F70F_size74_w604_h883.jpeg" alt="《等值线法解一类向量题》"></p><p><img src="http://p0.ifengimg.com/pmop/2018/0726/B110FD1B574955DDA3FF74792E388E395FC45448_size64_w595_h911.jpeg" alt="《等值线法解一类向量题》"></p><p><img src="http://p0.ifengimg.com/pmop/2018/0726/30C8357D2A5327B076E668F01B786F28A35C1912_size57_w574_h886.jpeg" alt="《等值线法解一类向量题》"></p><p><img src="http://p0.ifengimg.com/pmop/2018/0726/E110BFDEC9353B937C370C00A2B9A8305A5D8843_size20_w513_h347.jpeg" alt="《等值线法解一类向量题》"></p><p><img src="http://p0.ifengimg.com/pmop/2018/0726/FDF7B727FCBFC13A8F476242AF44A376D8045262_size51_w579_h885.jpeg" alt="《等值线法解一类向量题》"></p><p><img src="http://p0.ifengimg.com/pmop/2018/0726/647EFF797B522BCA7999743F58CF847F39B6F896_size40_w586_h854.jpeg" alt="《等值线法解一类向量题》"></p><p><img src="http://p0.ifengimg.com/pmop/2018/0726/C6E9B64F405F8EDDE2E5FD7B0144F56FE40A41D4_size47_w588_h880.jpeg" alt="《等值线法解一类向量题》"></p><p><img src="http://p0.ifengimg.com/pmop/2018/0726/E70C272B7549F42FB9A39218D9AA610B6B463558_size45_w578_h873.jpeg" alt="《等值线法解一类向量题》"></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>Hello World</title>
+      <link href="2021/02/10/hello-world/"/>
+      <url>2021/02/10/hello-world/</url>
+      
+        <content type="html"><![CDATA[<p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>]]></content>
+      
+      
+      
+    </entry>
+    
+    
+  
+  
+</search>
