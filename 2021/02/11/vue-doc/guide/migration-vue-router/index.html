@@ -1,0 +1,1370 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="从 Vue Router 0.7.x 迁移, CodingFool">
+    <meta name="description" content="专注于Web,分享生活,分享知识 ">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <title>从 Vue Router 0.7.x 迁移 | CodingFool</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+
+    <script src="/libs/jquery/jquery.min.js"></script>
+
+<meta name="generator" content="Hexo 5.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
+
+
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">CodingFool</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">CodingFool</div>
+        <div class="logo-desc">
+            
+            专注于Web,分享生活,分享知识 
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/2.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">从 Vue Router 0.7.x 迁移</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        padding: 35px 0 15px 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        padding-bottom: 30px;
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+
+        position: absolute;
+        right: 23.5vw;
+        display: block;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                          <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                          </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2021-02-11
+                </div>
+                
+
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    2.5k
+                </div>
+                
+
+                
+
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+        </div>
+        <hr class="clearfix">
+
+        
+
+        
+
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <blockquote>
+<p>只有 Vue Router 2 是与 Vue 2 相互兼容的，所以如果你更新了 Vue，你也需要更新 Vue Router。这也是我们在主文档中将迁移路径的详情添加进来的原因。有关使用 Vue Router 2 的完整教程，请参阅 <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/">Vue Router 文档</a>。</p>
+</blockquote>
+<h2 id="Router-初始化"><a href="#Router-初始化" class="headerlink" title="Router 初始化"></a>Router 初始化</h2><h3 id="router-start-替换"><a href="#router-start-替换" class="headerlink" title="router.start 替换"></a><code>router.start</code> <sup>替换</sup></h3><p>不再会有一个特殊的 API 用来初始化包含 Vue Router 的 app，这意味着不再是：</p>
+<pre class="line-numbers language-js"><code class="language-js">router<span class="token punctuation">.</span><span class="token function">start</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  template<span class="token punctuation">:</span> <span class="token string">'&lt;router-view>&lt;/router-view>'</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token string">'#app'</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>你只需要传一个路由 property 给 Vue 实例：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  el<span class="token punctuation">:</span> <span class="token string">'#app'</span><span class="token punctuation">,</span>
+  router<span class="token punctuation">:</span> router<span class="token punctuation">,</span>
+  template<span class="token punctuation">:</span> <span class="token string">'&lt;router-view>&lt;/router-view>'</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>或者，如果你使用的是运行时构建 (runtime-only) 方式：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  el<span class="token punctuation">:</span> <span class="token string">'#app'</span><span class="token punctuation">,</span>
+  router<span class="token punctuation">:</span> router<span class="token punctuation">,</span>
+  render<span class="token punctuation">:</span> h <span class="token operator">=</span><span class="token operator">></span> <span class="token function">h</span><span class="token punctuation">(</span><span class="token string">'router-view'</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>router.start</code> 被调用的示例。</p>
+</div>
+
+
+<h2 id="Route-定义"><a href="#Route-定义" class="headerlink" title="Route 定义"></a>Route 定义</h2><h3 id="router-map-替换"><a href="#router-map-替换" class="headerlink" title="router.map 替换"></a><code>router.map</code> <sup>替换</sup></h3><p>路由现在被定义为一个在 router 实例里的一个 <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/essentials/getting-started.html#javascript"><code>routes</code> 选项</a>数组。所以这些路由：</p>
+<pre class="line-numbers language-js"><code class="language-js">router<span class="token punctuation">.</span><span class="token function">map</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token string">'/foo'</span><span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    component<span class="token punctuation">:</span> Foo
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+  <span class="token string">'/bar'</span><span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    component<span class="token punctuation">:</span> Bar
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>会以这种方式定义：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  routes<span class="token punctuation">:</span> <span class="token punctuation">[</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> path<span class="token punctuation">:</span> <span class="token string">'/foo'</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> Foo <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+    <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> path<span class="token punctuation">:</span> <span class="token string">'/bar'</span><span class="token punctuation">,</span> component<span class="token punctuation">:</span> Bar <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token punctuation">]</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>考虑到不同浏览器中遍历对象不能保证会使用相同的 property 顺序，这种数组的语法可以保证更多可预测的路由匹配。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>router.map</code> 被调用的示例。</p>
+</div>
+
+
+<h3 id="router-on-移除"><a href="#router-on-移除" class="headerlink" title="router.on 移除"></a><code>router.on</code> <sup>移除</sup></h3><p>如果你需要在启动的 app 时通过代码生成路由，你可以动态地向路由数组推送定义来完成这个操作。举个例子：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token comment" spellcheck="true">// 普通的路由</span>
+<span class="token keyword">var</span> routes <span class="token operator">=</span> <span class="token punctuation">[</span>
+  <span class="token comment" spellcheck="true">// ...</span>
+<span class="token punctuation">]</span>
+
+<span class="token comment" spellcheck="true">// 动态生成的路由</span>
+marketingPages<span class="token punctuation">.</span><span class="token function">forEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>page<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  routes<span class="token punctuation">.</span><span class="token function">push</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    path<span class="token punctuation">:</span> <span class="token string">'/marketing/'</span> <span class="token operator">+</span> page<span class="token punctuation">.</span>slug
+    component<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">extends</span><span class="token punctuation">:</span> MarketingComponent
+      data<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> page<span class="token punctuation">:</span> page <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+
+<span class="token keyword">var</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">Router</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  routes<span class="token punctuation">:</span> routes
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果你需要在 router 被实例化后增加新的路由，你可以把 router 原来的匹配方式换成一个包括你新添的加路由的匹配方式：</p>
+<pre class="line-numbers language-js"><code class="language-js">router<span class="token punctuation">.</span>match <span class="token operator">=</span> <span class="token function">createMatcher</span><span class="token punctuation">(</span>
+  <span class="token punctuation">[</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    path<span class="token punctuation">:</span> <span class="token string">'/my/new/path'</span><span class="token punctuation">,</span>
+    component<span class="token punctuation">:</span> MyComponent
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">concat</span><span class="token punctuation">(</span>router<span class="token punctuation">.</span>options<span class="token punctuation">.</span>routes<span class="token punctuation">)</span>
+<span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>router.on</code> 被调用的示例。</p>
+</div>
+
+
+<h3 id="router-beforeEach-changed"><a href="#router-beforeEach-changed" class="headerlink" title="router.beforeEach changed"></a><code>router.beforeEach</code> <sup>changed</sup></h3><p><code>router.beforeEach</code> 现在是异步工作的，并且携带一个 <code>next</code> 函数作为其第三个参数。</p>
+<pre class="line-numbers language-js"><code class="language-js">router<span class="token punctuation">.</span><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>transition<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>transition<span class="token punctuation">.</span>to<span class="token punctuation">.</span>path <span class="token operator">===</span> <span class="token string">'/forbidden'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    transition<span class="token punctuation">.</span><span class="token function">abort</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    transition<span class="token punctuation">.</span><span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-js"><code class="language-js">router<span class="token punctuation">.</span><span class="token function">beforeEach</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> next<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">if</span> <span class="token punctuation">(</span>to<span class="token punctuation">.</span>path <span class="token operator">===</span> <span class="token string">'/forbidden'</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">next</span><span class="token punctuation">(</span><span class="token boolean">false</span><span class="token punctuation">)</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span> <span class="token keyword">else</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token function">next</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="subRoutes-换名"><a href="#subRoutes-换名" class="headerlink" title="subRoutes 换名"></a><code>subRoutes</code> <sup>换名</sup></h3><p>出于 Vue Router 和其他路由库一致性的考虑，重命名为 <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/essentials/nested-routes.html"><code>children</code></a></p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>subRoutes</code> 选项的示例。</p>
+</div>
+
+
+<h3 id="router-redirect-替换"><a href="#router-redirect-替换" class="headerlink" title="router.redirect 替换"></a><code>router.redirect</code> <sup>替换</sup></h3><p>现在用一个<a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/essentials/redirect-and-alias.html">路由定义的选项</a>作为代替。举个例子，你将会更新：</p>
+<pre class="line-numbers language-js"><code class="language-js">router<span class="token punctuation">.</span><span class="token function">redirect</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token string">'/tos'</span><span class="token punctuation">:</span> <span class="token string">'/terms-of-service'</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>成像下面的 <code>routes</code> 配置里定义的样子：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  path<span class="token punctuation">:</span> <span class="token string">'/tos'</span><span class="token punctuation">,</span>
+  redirect<span class="token punctuation">:</span> <span class="token string">'/terms-of-service'</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>router.redirect</code> 被调用的示例。</p>
+</div>
+
+
+<h3 id="router-alias-替换"><a href="#router-alias-替换" class="headerlink" title="router.alias 替换"></a><code>router.alias</code> <sup>替换</sup></h3><p>现在是你进行 alias 操作的<a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/essentials/redirect-and-alias.html">路由定义里的一个选项</a>。举个例子，你需要在你的 <code>routes</code> 定义里将：</p>
+<pre class="line-numbers language-js"><code class="language-js">router<span class="token punctuation">.</span><span class="token function">alias</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token string">'/manage'</span><span class="token punctuation">:</span> <span class="token string">'/admin'</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>配置这个样子：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  path<span class="token punctuation">:</span> <span class="token string">'/admin'</span><span class="token punctuation">,</span>
+  component<span class="token punctuation">:</span> AdminPanel<span class="token punctuation">,</span>
+  alias<span class="token punctuation">:</span> <span class="token string">'/manage'</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果你需要进行多次 alias 操作，你也可以使用一个数组语法去实现：</p>
+<pre><code>alias: [&#39;&#x2F;manage&#39;, &#39;&#x2F;administer&#39;, &#39;&#x2F;administrate&#39;]</code></pre>
+
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行<a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a>找到 <code>router.alias</code> 被调用的示例。</p>
+</div>
+
+
+<h3 id="任意的-Route-property-替换"><a href="#任意的-Route-property-替换" class="headerlink" title="任意的 Route property 替换"></a>任意的 Route property <sup>替换</sup></h3><p>现在任意的 route property 必须在新 meta property 的作用域内，以避免和以后的新特性发生冲突。举个例子，如果你以前这样定义：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token string">'/admin'</span><span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  component<span class="token punctuation">:</span> AdminPanel<span class="token punctuation">,</span>
+  requiresAuth<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>你现在需要把它更新成：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  path<span class="token punctuation">:</span> <span class="token string">'/admin'</span><span class="token punctuation">,</span>
+  component<span class="token punctuation">:</span> AdminPanel<span class="token punctuation">,</span>
+  meta<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    requiresAuth<span class="token punctuation">:</span> <span class="token boolean">true</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>如果在一个路由上访问一个 property，你仍然会通过 meta。举个例子：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">if</span> <span class="token punctuation">(</span>route<span class="token punctuation">.</span>meta<span class="token punctuation">.</span>requiresAuth<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// ...</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到任意的路由不在 meta 作用域下的示例。</p>
+</div>
+
+
+<h3 id="URL-中的-Query-数组-语法移除"><a href="#URL-中的-Query-数组-语法移除" class="headerlink" title="URL 中的 Query 数组 [] 语法移除"></a>URL 中的 Query 数组 [] 语法<sup>移除</sup></h3><p>当传递数组给 query 参数时，URL 语法不再是 <code>/foo?users[]=Tom&amp;users[]=Jerry</code>，取而代之，新语法是 <code>/foo?users=Tom&amp;users=Jerry</code>，此时 <code>$route.query.users</code> 将仍旧是一个数组，不过如果在该 query 中只有一个参数：<code>/foo?users=Tom</code>，当直接访问该路由时，vue-router 将无法知道我们期待的 <code>users</code> 是个数组。因此，可以考虑添加一个计算属性并且在每个使用 <code>$route.query.users</code> 的地方以该计算属性代替：</p>
+<pre class="line-numbers language-javascript"><code class="language-javascript"><span class="token keyword">export</span> <span class="token keyword">default</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token comment" spellcheck="true">// ...</span>
+  computed<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// 此计算属性将始终是个数组</span>
+    users <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      <span class="token keyword">const</span> users <span class="token operator">=</span> <span class="token keyword">this</span><span class="token punctuation">.</span>$route<span class="token punctuation">.</span>query<span class="token punctuation">.</span>users
+      <span class="token keyword">return</span> Array<span class="token punctuation">.</span><span class="token function">isArray</span><span class="token punctuation">(</span>users<span class="token punctuation">)</span> <span class="token operator">?</span> users <span class="token punctuation">:</span> <span class="token punctuation">[</span>users<span class="token punctuation">]</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h2 id="Route-匹配"><a href="#Route-匹配" class="headerlink" title="Route 匹配"></a>Route 匹配</h2><p>路由匹配现在使用 <a target="_blank" rel="noopener" href="https://github.com/pillarjs/path-to-regexp">path-to-regexp</a> 这个包，这将会使得工作与之前相比更加灵活。</p>
+<h3 id="一个或者更多的命名参数改变"><a href="#一个或者更多的命名参数改变" class="headerlink" title="一个或者更多的命名参数改变"></a>一个或者更多的命名参数<sup>改变</sup></h3><p>语法稍微有些许改变，所以以 <code>/category/*tags</code> 为例，应该被更新为 <code>/category/:tags+</code>。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到弃用路由语法的示例。</p>
+</div>
+
+
+<h2 id="链接"><a href="#链接" class="headerlink" title="链接"></a>链接</h2><h3 id="v-link-替换"><a href="#v-link-替换" class="headerlink" title="v-link 替换"></a><code>v-link</code> <sup>替换</sup></h3><p><code>v-link</code> 指令已经被一个新的 <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/api/router-link.html"><code>&lt;router-link&gt;</code> 组件</a>指令替代，这一部分的工作已经被 Vue 2 中的组件完成。这将意味着在任何情况下，如果你拥有这样一个链接：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">v-link</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">'</span>/about<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>About<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>你需要把它更新成：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>About<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注意：<code>&lt;router-link&gt;</code> 不支持 <code>target=&quot;_blank&quot;</code>，如果你想打开一个新标签页，你必须用 <code>&lt;a&gt;</code> 标签。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>v-link</code> 指令的示例。</p>
+</div>
+
+
+<h3 id="v-link-active-替换"><a href="#v-link-active-替换" class="headerlink" title="v-link-active 替换"></a><code>v-link-active</code> <sup>替换</sup></h3><p><code>v-link-active</code> 也因为指定了一个在 <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/api/router-link.html"><code>&lt;router-link&gt;</code> 组件</a>上的 tag attribute 而被弃用了。举个例子，你需要更新：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>li</span> <span class="token attr-name">v-link-active</span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span> <span class="token attr-name">v-link</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span><span class="token punctuation">'</span>/about<span class="token punctuation">'</span><span class="token punctuation">"</span></span><span class="token punctuation">></span></span>About<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>li</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>成这个写法：</p>
+<pre class="line-numbers language-html"><code class="language-html"><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>router-link</span> <span class="token attr-name">tag</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>li<span class="token punctuation">"</span></span> <span class="token attr-name">to</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>/about<span class="token punctuation">"</span></span><span class="token punctuation">></span></span>
+  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>a</span><span class="token punctuation">></span></span>About<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>a</span><span class="token punctuation">></span></span>
+<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>router-link</span><span class="token punctuation">></span></span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p> <code>&lt;a&gt;</code> 标签将会成为真实的链接 (并且可以获取到正确的跳转)，但是激活的类将会被应用在外部的 <code>&lt;li&gt;</code> 标签上。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>v-link-active</code> 指令的示例</p>
+</div>
+
+
+<h2 id="编程导航"><a href="#编程导航" class="headerlink" title="编程导航"></a>编程导航</h2><h3 id="router-go-改变"><a href="#router-go-改变" class="headerlink" title="router.go 改变"></a><code>router.go</code> <sup>改变</sup></h3><p>为了与 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/History_API">HTML5 History API</a> 保持一致性，<code>router.go</code> 已经被用来作为<a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/essentials/navigation.html#routergon">后退/前进导航</a>，<a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/essentials/navigation.html#routerpushlocation"><code>router.push</code></a> 用来导向特殊页面。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> ，找到 <code>router.go</code> 和 <code>router.push</code> 指令被调用的示例。</p>
+</div>
+
+
+<h2 id="路由选择：Modes"><a href="#路由选择：Modes" class="headerlink" title="路由选择：Modes"></a>路由选择：Modes</h2><h3 id="hashbang-false-移除"><a href="#hashbang-false-移除" class="headerlink" title="hashbang: false 移除"></a><code>hashbang: false</code> <sup>移除</sup></h3><p>Hashbangs 将不再为谷歌需要去爬去一个网址，所以他们将不再成为哈希策略的默认选项。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>hashbang: false</code> 选项的示。</p>
+</div>
+
+
+<h3 id="history-true-替换"><a href="#history-true-替换" class="headerlink" title="history: true 替换"></a><code>history: true</code> <sup>替换</sup></h3><p>所有路由模型选项将被简化成一个单个的 <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/api/options.html#mode"><code>mode</code> 选项</a>。你需要更新：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  history<span class="token punctuation">:</span> <span class="token string">'true'</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>成这个写法：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  mode<span class="token punctuation">:</span> <span class="token string">'history'</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>history: true</code> 选项的示。</p>
+</div>
+
+
+<h3 id="abstract-true-替换"><a href="#abstract-true-替换" class="headerlink" title="abstract: true 替换"></a><code>abstract: true</code> <sup>替换</sup></h3><p>所有路由模型选项将被简化成一个单个的 <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/api/options.html#mode"><code>mode</code> 选项</a>。你需要更新：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  abstract<span class="token punctuation">:</span> <span class="token string">'true'</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>成这个写法：</p>
+<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">var</span> router <span class="token operator">=</span> <span class="token keyword">new</span> <span class="token class-name">VueRouter</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  mode<span class="token punctuation">:</span> <span class="token string">'abstract'</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>abstract: true</code> 选项的示例。</p>
+</div>
+
+
+<h2 id="路由选项：Misc"><a href="#路由选项：Misc" class="headerlink" title="路由选项：Misc"></a>路由选项：Misc</h2><h3 id="saveScrollPosition-替换"><a href="#saveScrollPosition-替换" class="headerlink" title="saveScrollPosition 替换"></a><code>saveScrollPosition</code> <sup>替换</sup></h3><p>它已经被替换为可以接受一个函数的 <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/advanced/scroll-behavior.html"><code>scrollBehavior</code> 选项</a>，所以滑动行为可以完全的被定制化处理 - 甚至为每次路由进行定制也可以满足。这将会开启很多新的可能，但是简单的复制旧的行为：</p>
+<pre class="line-numbers language-js"><code class="language-js">saveScrollPosition<span class="token punctuation">:</span> <span class="token boolean">true</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>你可以替换为：</p>
+<pre class="line-numbers language-js"><code class="language-js">scrollBehavior<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>to<span class="token punctuation">,</span> <span class="token keyword">from</span><span class="token punctuation">,</span> savedPosition<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> savedPosition <span class="token operator">||</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span> x<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">,</span> y<span class="token punctuation">:</span> <span class="token number">0</span> <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移路径</a> 找到 <code>saveScrollPosition: true</code> 选项的示例。</p>
+</div>
+
+
+<h3 id="root-换名"><a href="#root-换名" class="headerlink" title="root 换名"></a><code>root</code> <sup>换名</sup></h3><p>为了与 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base">HTML 的 <code>&lt;base&gt;</code> 标签</a>保持一致性，重命名为 <code>base</code>。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移路径</a> 找到 <code>root</code> 选项的示例。</p>
+</div>
+
+
+<h3 id="transitionOnLoad-移除"><a href="#transitionOnLoad-移除" class="headerlink" title="transitionOnLoad 移除"></a><code>transitionOnLoad</code> <sup>移除</sup></h3><p>由于 Vue 的过渡系统 <a href="transitions.html#%E5%88%9D%E5%A7%8B%E6%B8%B2%E6%9F%93%E7%9A%84%E8%BF%87%E6%B8%A1"><code>appear</code> transition control</a> 的存在，这个选项将不再需要。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移路径</a> 找到 <code>transitionOnLoad: true</code> 选项的示例。</p>
+</div>
+
+
+<h3 id="suppressTransitionError-移除"><a href="#suppressTransitionError-移除" class="headerlink" title="suppressTransitionError 移除"></a><code>suppressTransitionError</code> <sup>移除</sup></h3><p>出于简化钩子的考虑被移除。如果你真的需要抑制过渡错误，你可以使用 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/try...catch"><code>try</code>…<code>catch</code></a> 作为替代。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移指令</a> 找到 <code>suppressTransitionError: true</code> 选项的示例。</p>
+</div>
+
+
+<h2 id="路由挂钩"><a href="#路由挂钩" class="headerlink" title="路由挂钩"></a>路由挂钩</h2><h3 id="activate-替换"><a href="#activate-替换" class="headerlink" title="activate 替换"></a><code>activate</code> <sup>替换</sup></h3><p>使用 <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/advanced/navigation-guards.html#%E7%BB%84%E4%BB%B6%E5%86%85%E7%9A%84%E9%92%A9%E5%AD%90"><code>beforeRouteEnter</code></a> 这一组件进行替代。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移路径</a> 找到 <code>activate</code> 钩子的示例。</p>
+</div>
+
+
+<h3 id="canActivate-替换"><a href="#canActivate-替换" class="headerlink" title="canActivate 替换"></a><code>canActivate</code> <sup>替换</sup></h3><p>使用 <a target="_blank" rel="noopener" href="https://router.vuejs.org/en/advanced/navigation-guards.html#perroute-guard"><code>beforeEnter</code></a> 在路由中作为替代。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移路径</a> 找到 <code>canActivate</code> 钩子的示例。</p>
+</div>
+
+
+<h3 id="deactivate-移除"><a href="#deactivate-移除" class="headerlink" title="deactivate 移除"></a><code>deactivate</code> <sup>移除</sup></h3><p>使用 <a href="../api/#beforeDestroy"><code>beforeDestroy</code></a> 或者 <a href="../api/#destroyed"><code>destroyed</code></a> 钩子作为替代。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移路径</a> 找到 <code>deactivate</code> 钩子的示例。</p>
+</div>
+
+
+<h3 id="canDeactivate-替换"><a href="#canDeactivate-替换" class="headerlink" title="canDeactivate 替换"></a><code>canDeactivate</code> <sup>替换</sup></h3><p>在组件中使用 <a target="_blank" rel="noopener" href="https://router.vuejs.org/zh-cn/advanced/navigation-guards.html#%E7%BB%84%E4%BB%B6%E5%86%85%E7%9A%84%E9%92%A9%E5%AD%90"><code>beforeRouteLeave</code></a> 作为替代。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移路径</a> 找到 <code>canDeactivate</code> 钩子的示例。</p>
+</div>
+
+
+<h3 id="canReuse-false-移除"><a href="#canReuse-false-移除" class="headerlink" title="canReuse: false 移除"></a><code>canReuse: false</code> <sup>移除</sup></h3><p>在新的 Vue 路由中将不再被使用。</p>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>canReuse: false</code> 选项的示例。</p>
+</div>
+
+
+<h3 id="data-替换"><a href="#data-替换" class="headerlink" title="data 替换"></a><code>data</code> <sup>替换</sup></h3><p><code>$route</code> property 是响应式的，所以你可以就使用一个 watcher 去响应路由的改变，就像这样：</p>
+<pre class="line-numbers language-js"><code class="language-js">watch<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token string">'$route'</span><span class="token punctuation">:</span> <span class="token string">'fetchData'</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+methods<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  fetchData<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token comment" spellcheck="true">// ...</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+<div class="upgrade-path">
+  <h4>升级路径</h4>
+  <p>运行 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-migration-helper">迁移助手</a> 找到 <code>data</code> 钩子的示例。</p>
+</div>
+
+
+<h3 id="loadingRouteData-移除"><a href="#loadingRouteData-移除" class="headerlink" title="$loadingRouteData 移除"></a><code>$loadingRouteData</code> <sup>移除</sup></h3><p>定义你自己的 property (例如：<code>isLoading</code>)，然后在路由上的 watcher 中更新加载状态。举个例子，如果使用 <a target="_blank" rel="noopener" href="https://github.com/mzabriskie/axios">axios</a> 获取数据：</p>
+<pre class="line-numbers language-js"><code class="language-js">data<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token keyword">return</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    posts<span class="token punctuation">:</span> <span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span>
+    isLoading<span class="token punctuation">:</span> <span class="token boolean">false</span><span class="token punctuation">,</span>
+    fetchError<span class="token punctuation">:</span> <span class="token keyword">null</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+watch<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  <span class="token string">'$route'</span><span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> self <span class="token operator">=</span> <span class="token keyword">this</span>
+    self<span class="token punctuation">.</span>isLoading <span class="token operator">=</span> <span class="token boolean">true</span>
+    self<span class="token punctuation">.</span><span class="token function">fetchData</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+      self<span class="token punctuation">.</span>isLoading <span class="token operator">=</span> <span class="token boolean">false</span>
+    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span>
+methods<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+  fetchData<span class="token punctuation">:</span> <span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+    <span class="token keyword">var</span> self <span class="token operator">=</span> <span class="token keyword">this</span>
+    <span class="token keyword">return</span> axios<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token string">'/api/posts'</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token function">then</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>response<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        self<span class="token punctuation">.</span>posts <span class="token operator">=</span> response<span class="token punctuation">.</span>data<span class="token punctuation">.</span>posts
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+      <span class="token punctuation">.</span><span class="token keyword">catch</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span>error<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
+        self<span class="token punctuation">.</span>fetchError <span class="token operator">=</span> error
+      <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
+  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+
+                
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="/about" rel="external nofollow noreferrer">ADG</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://adg666.gitee.io/2021/02/11/vue-doc/guide/migration-vue-router/">https://adg666.gitee.io/2021/02/11/vue-doc/guide/migration-vue-router/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="/about" target="_blank">ADG</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            <span class="chip bg-color">无标签</span>
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+<div id="article-share">
+
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+        </div>
+    </div>
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2021/02/11/vue-doc/guide/migration-vuex/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/9.jpg" class="responsive-img" alt="从 Vuex 0.6.x 迁移到 1.0">
+                        
+                        <span class="card-title">从 Vuex 0.6.x 迁移到 1.0</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-11
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            ADG
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/02/11/vue-doc/guide/list/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/18.jpg" class="responsive-img" alt="列表渲染">
+                        
+                        <span class="card-title">列表渲染</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            ADG
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+<script>
+    $('#articleContent').on('copy', function (e) {
+        // IE8 or earlier browser is 'undefined'
+        if (typeof window.getSelection === 'undefined') return;
+
+        var selection = window.getSelection();
+        // if the selection is short let's not annoy our users.
+        if (('' + selection).length < Number.parseInt('120')) {
+            return;
+        }
+
+        // create a div outside of the visible area and fill it with the selected text.
+        var bodyElement = document.getElementsByTagName('body')[0];
+        var newdiv = document.createElement('div');
+        newdiv.style.position = 'absolute';
+        newdiv.style.left = '-99999px';
+        bodyElement.appendChild(newdiv);
+        newdiv.appendChild(selection.getRangeAt(0).cloneContents());
+
+        // we need a <pre> tag workaround.
+        // otherwise the text inside "pre" loses all the line breaks!
+        if (selection.getRangeAt(0).commonAncestorContainer.nodeName === 'PRE') {
+            newdiv.innerHTML = "<pre>" + newdiv.innerHTML + "</pre>";
+        }
+
+        var url = document.location.href;
+        newdiv.innerHTML += '<br />'
+            + '来源: CodingFool<br />'
+            + '文章作者: ADG<br />'
+            + '文章链接: <a href="' + url + '">' + url + '</a><br />'
+            + '本文章著作权归作者所有，任何形式的转载都请注明出处。';
+
+        selection.selectAllChildren(newdiv);
+        window.setTimeout(function () {bodyElement.removeChild(newdiv);}, 200);
+    });
+</script>
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget card" style="background-color: white;">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+
+    <footer class="page-footer bg-color">
+    
+    <div class="container row center-align" style="margin-bottom: 0px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            
+                <span id="year">2019-2021</span>
+            
+            <span id="year">2019</span>
+            <a href="/about" target="_blank">ADG</a>
+            |&nbsp;Powered by&nbsp;<a href="https://hexo.io/" target="_blank">Hexo</a>
+            |&nbsp;Theme&nbsp;<a href="https://github.com/blinkfox/hexo-theme-matery" target="_blank">Matery</a>
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">111.3k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/zty0510" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:zhangty3@shanghaitech.edu.cn" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+    <a href="tencent://AddContact/?fromId=50&fromSubId=1&subcmd=all&uin=2506752942" class="tooltipped" target="_blank" data-tooltip="QQ联系我: 2506752942" data-position="top" data-delay="50">
+        <i class="fab fa-qq"></i>
+    </a>
+
+
+
+
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script type="text/javascript">
+$(function () {
+    var searchFunc = function (path, search_id, content_id) {
+        'use strict';
+        $.ajax({
+            url: path,
+            dataType: "xml",
+            success: function (xmlResponse) {
+                // get the contents from search data
+                var datas = $("entry", xmlResponse).map(function () {
+                    return {
+                        title: $("title", this).text(),
+                        content: $("content", this).text(),
+                        url: $("url", this).text()
+                    };
+                }).get();
+                var $input = document.getElementById(search_id);
+                var $resultContent = document.getElementById(content_id);
+                $input.addEventListener('input', function () {
+                    var str = '<ul class=\"search-result-list\">';
+                    var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+                    $resultContent.innerHTML = "";
+                    if (this.value.trim().length <= 0) {
+                        return;
+                    }
+                    // perform local searching
+                    datas.forEach(function (data) {
+                        var isMatch = true;
+                        var data_title = data.title.trim().toLowerCase();
+                        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+                        var data_url = data.url;
+                        data_url = data_url.indexOf('/') === 0 ? data.url : '/' + data_url;
+                        var index_title = -1;
+                        var index_content = -1;
+                        var first_occur = -1;
+                        // only match artiles with not empty titles and contents
+                        if (data_title !== '' && data_content !== '') {
+                            keywords.forEach(function (keyword, i) {
+                                index_title = data_title.indexOf(keyword);
+                                index_content = data_content.indexOf(keyword);
+                                if (index_title < 0 && index_content < 0) {
+                                    isMatch = false;
+                                } else {
+                                    if (index_content < 0) {
+                                        index_content = 0;
+                                    }
+                                    if (i === 0) {
+                                        first_occur = index_content;
+                                    }
+                                }
+                            });
+                        }
+                        // show search results
+                        if (isMatch) {
+                            str += "<li><a href='" + data_url + "' class='search-result-title'>" + data_title + "</a>";
+                            var content = data.content.trim().replace(/<[^>]+>/g, "");
+                            if (first_occur >= 0) {
+                                // cut out 100 characters
+                                var start = first_occur - 20;
+                                var end = first_occur + 80;
+                                if (start < 0) {
+                                    start = 0;
+                                }
+                                if (start === 0) {
+                                    end = 100;
+                                }
+                                if (end > content.length) {
+                                    end = content.length;
+                                }
+                                var match_content = content.substr(start, end);
+                                // highlight all keywords
+                                keywords.forEach(function (keyword) {
+                                    var regS = new RegExp(keyword, "gi");
+                                    match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+                                });
+
+                                str += "<p class=\"search-result\">" + match_content + "...</p>"
+                            }
+                            str += "</li>";
+                        }
+                    });
+                    str += "</ul>";
+                    $resultContent.innerHTML = str;
+                });
+            }
+        });
+    };
+
+    searchFunc('/search.xml', 'searchInput', 'searchResult');
+});
+</script>
+
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    <script src="/libs/others/clicklove.js" async="async"></script>
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    <!--腾讯兔小巢-->
+    
+    
+
+    
+
+    
+
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
+
+<script type="text/javascript">
+//只在桌面版网页启用特效
+var windowWidth = $(window).width();
+if (windowWidth > 768) {
+    document.write('<script type="text/javascript" src="/js/sakura.js"><\/script>');
+}
+</script>
+
