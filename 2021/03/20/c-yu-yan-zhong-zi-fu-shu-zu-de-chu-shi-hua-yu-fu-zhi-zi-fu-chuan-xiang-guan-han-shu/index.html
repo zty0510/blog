@@ -4,7 +4,7 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="keywords" content="动态组件 &amp; 异步组件, CodingFool">
+    <meta name="keywords" content="C语言中字符数组的初始化与赋值，字符串相关函数！, CodingFool">
     <meta name="description" content="专注于Web,分享生活,分享知识 ">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -16,7 +16,7 @@
     <!-- Global site tag (gtag.js) - Google Analytics -->
 
 
-    <title>动态组件 &amp; 异步组件 | CodingFool</title>
+    <title>C语言中字符数组的初始化与赋值，字符串相关函数！ | CodingFool</title>
     <link rel="icon" type="image/png" href="/favicon.png">
 
     <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
@@ -29,7 +29,7 @@
 
     <script src="/libs/jquery/jquery.min.js"></script>
 
-<meta name="generator" content="Hexo 5.3.0"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
+<meta name="generator" content="Hexo 5.4.2"><link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css">
 <link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 
@@ -204,12 +204,12 @@
 
 
 
-<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/20.jpg')">
+<div class="bg-cover pd-header post-cover" style="background-image: url('/medias/featureimages/5.jpg')">
     <div class="container" style="right: 0px;left: 0px;">
         <div class="row">
             <div class="col s12 m12 l12">
                 <div class="brand">
-                    <h1 class="description center-align post-title">动态组件 &amp; 异步组件</h1>
+                    <h1 class="description center-align post-title">C语言中字符数组的初始化与赋值，字符串相关函数！</h1>
                 </div>
             </div>
         </div>
@@ -330,6 +330,15 @@
                 </div>
                 <div class="col s5 right-align">
                     
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/c%E8%AF%AD%E8%A8%80/" class="post-category">
+                                c语言
+                            </a>
+                        
+                    </div>
+                    
                 </div>
             </div>
 
@@ -337,7 +346,7 @@
                 
                 <div class="post-date info-break-policy">
                     <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
-                    2021-02-11
+                    2021-03-20
                 </div>
                 
 
@@ -346,7 +355,7 @@
                 
                 <div class="info-break-policy">
                     <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
-                    1.7k
+                    1.4k
                 </div>
                 
 
@@ -368,247 +377,57 @@
 
         <div class="card-content article-card-content">
             <div id="articleContent">
-                <blockquote>
-<p>该页面假设你已经阅读过了<a href="components.html">组件基础</a>。如果你还对组件不太了解，推荐你先阅读它。</p>
-</blockquote>
-<h2 id="在动态组件上使用-keep-alive"><a href="#在动态组件上使用-keep-alive" class="headerlink" title="在动态组件上使用 keep-alive"></a>在动态组件上使用 <code>keep-alive</code></h2><p>我们之前曾经在一个多标签的界面中使用 <code>is</code> attribute 来切换不同的组件：</p>
-<pre><code>&lt;component v-bind:is&#x3D;&quot;currentTabComponent&quot;&gt;&lt;&#x2F;component&gt;</code></pre>
-
-<p>当在这些组件之间切换的时候，你有时会想保持这些组件的状态，以避免反复重渲染导致的性能问题。例如我们来展开说一说这个多标签界面：</p>
-
-<div id="dynamic-component-demo" class="demo">
-  <button
-    v-for="tab in tabs"
-    v-bind:key="tab"
-    v-bind:class="['dynamic-component-demo-tab-button', { 'dynamic-component-demo-active': currentTab === tab }]"
-    v-on:click="currentTab = tab"
-  >{{ tab }}</button>
-  <component
-    v-bind:is="currentTabComponent"
-    class="dynamic-component-demo-tab"
-  ></component>
-</div>
-<script>
-Vue.component('tab-posts', {
-  data: function () {
-    return {
-      posts: [
-        {
-          id: 1,
-          title: 'Cat Ipsum',
-          content: '<p>Dont wait for the storm to pass, dance in the rain kick up litter decide to want nothing to do with my owner today demand to be let outside at once, and expect owner to wait for me as i think about it cat cat moo moo lick ears lick paws so make meme, make cute face but lick the other cats. Kitty poochy chase imaginary bugs, but stand in front of the computer screen. Sweet beast cat dog hate mouse eat string barf pillow no baths hate everything stare at guinea pigs. My left donut is missing, as is my right loved it, hated it, loved it, hated it scoot butt on the rug cat not kitten around</p>'
-        },
-        {
-          id: 2,
-          title: 'Hipster Ipsum',
-          content: '<p>Bushwick blue bottle scenester helvetica ugh, meh four loko. Put a bird on it lumbersexual franzen shabby chic, street art knausgaard trust fund shaman scenester live-edge mixtape taxidermy viral yuccie succulents. Keytar poke bicycle rights, crucifix street art neutra air plant PBR&B hoodie plaid venmo. Tilde swag art party fanny pack vinyl letterpress venmo jean shorts offal mumblecore. Vice blog gentrify mlkshk tattooed occupy snackwave, hoodie craft beer next level migas 8-bit chartreuse. Trust fund food truck drinking vinegar gochujang.</p>'
-        },
-        {
-          id: 3,
-          title: 'Cupcake Ipsum',
-          content: '<p>Icing dessert soufflé lollipop chocolate bar sweet tart cake chupa chups. Soufflé marzipan jelly beans croissant toffee marzipan cupcake icing fruitcake. Muffin cake pudding soufflé wafer jelly bear claw sesame snaps marshmallow. Marzipan soufflé croissant lemon drops gingerbread sugar plum lemon drops apple pie gummies. Sweet roll donut oat cake toffee cake. Liquorice candy macaroon toffee cookie marzipan.</p>'
-        }
-      ],
-      selectedPost: null
-    }
-  },
-  template: '\
-    <div class="dynamic-component-demo-posts-tab">\
-      <ul class="dynamic-component-demo-posts-sidebar">\
-        <li\
-          v-for="post in posts"\
-          v-bind:key="post.id"\
-          v-bind:class="{ \'dynamic-component-demo-active\': post === selectedPost }"\
-          v-on:click="selectedPost = post"\
-        >\
-          {{ post.title }}\
-        </li>\
-      </ul>\
-      <div class="dynamic-component-demo-post-container">\
-        <div \
-          v-if="selectedPost"\
-          class="dynamic-component-demo-post"\
-        >\
-          <h3>{{ selectedPost.title }}</h3>\
-          <div v-html="selectedPost.content"></div>\
-        </div>\
-        <strong v-else>\
-          Click on a blog title to the left to view it.\
-        </strong>\
-      </div>\
-    </div>\
-  '
-})
-Vue.component('tab-archive', {
-  template: '<div>Archive component</div>'
-})
-new Vue({
-  el: '#dynamic-component-demo',
-  data: {
-    currentTab: 'Posts',
-    tabs: ['Posts', 'Archive']
-  },
-  computed: {
-    currentTabComponent: function () {
-      return 'tab-' + this.currentTab.toLowerCase()
-    }
-  }
-})
-</script>
-<style>
-.dynamic-component-demo-tab-button {
-  padding: 6px 10px;
-  border-top-left-radius: 3px;
-  border-top-right-radius: 3px;
-  border: 1px solid #ccc;
-  cursor: pointer;
-  background: #f0f0f0;
-  margin-bottom: -1px;
-  margin-right: -1px;
-}
-.dynamic-component-demo-tab-button:hover {
-  background: #e0e0e0;
-}
-.dynamic-component-demo-tab-button.dynamic-component-demo-active {
-  background: #e0e0e0;
-}
-.dynamic-component-demo-tab {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-.dynamic-component-demo-posts-tab {
-  display: flex;
-}
-.dynamic-component-demo-posts-sidebar {
-  max-width: 40vw;
-  margin: 0 !important;
-  padding: 0 10px 0 0 !important;
-  list-style-type: none;
-  border-right: 1px solid #ccc;
-}
-.dynamic-component-demo-posts-sidebar li {
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  cursor: pointer;
-}
-.dynamic-component-demo-posts-sidebar li:hover {
-  background: #eee;
-}
-.dynamic-component-demo-posts-sidebar li.dynamic-component-demo-active {
-  background: lightblue;
-}
-.dynamic-component-demo-post-container {
-  padding-left: 10px;
-}
-.dynamic-component-demo-post > :first-child {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-}
-</style>
-
-
-<p>你会注意到，如果你选择了一篇文章，切换到 <em>Archive</em> 标签，然后再切换回 <em>Posts</em>，是不会继续展示你之前选择的文章的。这是因为你每次切换新标签的时候，Vue 都创建了一个新的 <code>currentTabComponent</code> 实例。</p>
-<p>重新创建动态组件的行为通常是非常有用的，但是在这个案例中，我们更希望那些标签的组件实例能够被在它们第一次被创建的时候缓存下来。为了解决这个问题，我们可以用一个 <code>&lt;keep-alive&gt;</code> 元素将其动态组件包裹起来。</p>
-<pre class="line-numbers language-html"><code class="language-html"><span class="token comment" spellcheck="true">&lt;!-- 失活的组件将会被缓存！--></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>keep-alive</span><span class="token punctuation">></span></span>
-  <span class="token tag"><span class="token tag"><span class="token punctuation">&lt;</span>component</span> <span class="token attr-name"><span class="token namespace">v-bind:</span>is</span><span class="token attr-value"><span class="token punctuation">=</span><span class="token punctuation">"</span>currentTabComponent<span class="token punctuation">"</span></span><span class="token punctuation">></span></span><span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>component</span><span class="token punctuation">></span></span>
-<span class="token tag"><span class="token tag"><span class="token punctuation">&lt;/</span>keep-alive</span><span class="token punctuation">></span></span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
-<p>来看看修改后的结果：</p>
-
-<div id="dynamic-component-keep-alive-demo" class="demo">
-  <button
-    v-for="tab in tabs"
-    v-bind:key="tab"
-    v-bind:class="['dynamic-component-demo-tab-button', { 'dynamic-component-demo-active': currentTab === tab }]"
-    v-on:click="currentTab = tab"
-  >{{ tab }}</button>
-  <keep-alive>
-    <component
-      v-bind:is="currentTabComponent"
-      class="dynamic-component-demo-tab"
-    ></component>
-  </keep-alive>
-</div>
-<script>
-new Vue({
-  el: '#dynamic-component-keep-alive-demo',
-  data: {
-    currentTab: 'Posts',
-    tabs: ['Posts', 'Archive']
-  },
-  computed: {
-    currentTabComponent: function () {
-      return 'tab-' + this.currentTab.toLowerCase()
-    }
-  }
-})
-</script>
-
-
-<p>现在这个 <em>Posts</em> 标签保持了它的状态 (被选中的文章) 甚至当它未被渲染时也是如此。你可以在<a target="_blank" rel="noopener" href="https://codesandbox.io/s/github/vuejs/vuejs.org/tree/master/src/v2/examples/vue-20-keep-alive-with-dynamic-components">这个示例</a>查阅到完整的代码。</p>
-<p class="tip">注意这个 `<keep-alive>` 要求被切换到的组件都有自己的名字，不论是通过组件的 `name` 选项还是局部/全局注册。</p>
-
-<p>你可以在 <a href="../api/#keep-alive">API 参考文档</a>查阅更多关于 <code>&lt;keep-alive&gt;</code> 的细节。</p>
-<h2 id="异步组件"><a href="#异步组件" class="headerlink" title="异步组件"></a>异步组件</h2><div class="vueschool"><a href="https://vueschool.io/lessons/dynamically-load-components?friend=vuejs" target="_blank" rel="sponsored noopener" title="Free Vue.js Async Components lesson">Watch a free video lesson on Vue School</a></div>
-
-<p>在大型应用中，我们可能需要将应用分割成小一些的代码块，并且只在需要的时候才从服务器加载一个模块。为了简化，Vue 允许你以一个工厂函数的方式定义你的组件，这个工厂函数会异步解析你的组件定义。Vue 只有在这个组件需要被渲染的时候才会触发该工厂函数，且会把结果缓存起来供未来重渲染。例如：</p>
-<pre class="line-numbers language-js"><code class="language-js">Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'async-example'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>resolve<span class="token punctuation">,</span> reject<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token function">setTimeout</span><span class="token punctuation">(</span><span class="token keyword">function</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token comment" spellcheck="true">// 向 `resolve` 回调传递组件定义</span>
-    <span class="token function">resolve</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-      template<span class="token punctuation">:</span> <span class="token string">'&lt;div>I am async!&lt;/div>'</span>
-    <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">,</span> <span class="token number">1000</span><span class="token punctuation">)</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>如你所见，这个工厂函数会收到一个 <code>resolve</code> 回调，这个回调函数会在你从服务器得到组件定义的时候被调用。你也可以调用 <code>reject(reason)</code> 来表示加载失败。这里的 <code>setTimeout</code> 是为了演示用的，如何获取组件取决于你自己。一个推荐的做法是将异步组件和 <a target="_blank" rel="noopener" href="https://webpack.js.org/guides/code-splitting/">webpack 的 code-splitting 功能</a>一起配合使用：</p>
-<pre class="line-numbers language-js"><code class="language-js">Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span><span class="token string">'async-webpack-example'</span><span class="token punctuation">,</span> <span class="token keyword">function</span> <span class="token punctuation">(</span>resolve<span class="token punctuation">)</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// 这个特殊的 `require` 语法将会告诉 webpack</span>
-  <span class="token comment" spellcheck="true">// 自动将你的构建代码切割成多个包，这些包</span>
-  <span class="token comment" spellcheck="true">// 会通过 Ajax 请求加载</span>
-  <span class="token function">require</span><span class="token punctuation">(</span><span class="token punctuation">[</span><span class="token string">'./my-async-component'</span><span class="token punctuation">]</span><span class="token punctuation">,</span> resolve<span class="token punctuation">)</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>你也可以在工厂函数中返回一个 <code>Promise</code>，所以把 webpack 2 和 ES2015 语法加在一起，我们可以这样使用动态导入：</p>
-<pre class="line-numbers language-js"><code class="language-js">Vue<span class="token punctuation">.</span><span class="token function">component</span><span class="token punctuation">(</span>
-  <span class="token string">'async-webpack-example'</span><span class="token punctuation">,</span>
-  <span class="token comment" spellcheck="true">// 这个动态导入会返回一个 `Promise` 对象。</span>
-  <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'./my-async-component'</span><span class="token punctuation">)</span>
-<span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p>当使用<a href="components-registration.html#%E5%B1%80%E9%83%A8%E6%B3%A8%E5%86%8C">局部注册</a>的时候，你也可以直接提供一个返回 <code>Promise</code> 的函数：</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">new</span> <span class="token class-name">Vue</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// ...</span>
-  components<span class="token punctuation">:</span> <span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-    <span class="token string">'my-component'</span><span class="token punctuation">:</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'./my-async-component'</span><span class="token punctuation">)</span>
-  <span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<p class="tip">如果你是一个 <strong>Browserify</strong> 用户同时喜欢使用异步组件，很不幸这个工具的作者[明确表示](https://github.com/substack/node-browserify/issues/58#issuecomment-21978224)异步加载“并不会被 Browserify 支持”，至少官方不会。Browserify 社区已经找到了[一些变通方案](https://github.com/vuejs/vuejs.org/issues/620)，这些方案可能会对已存在的复杂应用有帮助。对于其它的场景，我们推荐直接使用 webpack，以拥有内置的头等异步支持。</p> 
-
-<h3 id="处理加载状态"><a href="#处理加载状态" class="headerlink" title="处理加载状态"></a>处理加载状态</h3><blockquote>
-<p>2.3.0+ 新增</p>
-</blockquote>
-<p>这里的异步组件工厂函数也可以返回一个如下格式的对象：</p>
-<pre class="line-numbers language-js"><code class="language-js"><span class="token keyword">const</span> AsyncComponent <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token operator">=</span><span class="token operator">></span> <span class="token punctuation">(</span><span class="token operator">&amp;</span>#<span class="token number">123</span><span class="token punctuation">;</span>
-  <span class="token comment" spellcheck="true">// 需要加载的组件 (应该是一个 `Promise` 对象)</span>
-  component<span class="token punctuation">:</span> <span class="token keyword">import</span><span class="token punctuation">(</span><span class="token string">'./MyComponent.vue'</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
-  <span class="token comment" spellcheck="true">// 异步组件加载时使用的组件</span>
-  loading<span class="token punctuation">:</span> LoadingComponent<span class="token punctuation">,</span>
-  <span class="token comment" spellcheck="true">// 加载失败时使用的组件</span>
-  error<span class="token punctuation">:</span> ErrorComponent<span class="token punctuation">,</span>
-  <span class="token comment" spellcheck="true">// 展示加载时组件的延时时间。默认值是 200 (毫秒)</span>
-  delay<span class="token punctuation">:</span> <span class="token number">200</span><span class="token punctuation">,</span>
-  <span class="token comment" spellcheck="true">// 如果提供了超时时间且组件加载也超时了，</span>
-  <span class="token comment" spellcheck="true">// 则使用加载失败时使用的组件。默认值是：`Infinity`</span>
-  timeout<span class="token punctuation">:</span> <span class="token number">3000</span>
-<span class="token operator">&amp;</span>#<span class="token number">125</span><span class="token punctuation">;</span><span class="token punctuation">)</span>
-<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
-<blockquote>
-<p>注意如果你希望在 <a target="_blank" rel="noopener" href="https://github.com/vuejs/vue-router">Vue Router</a> 的路由组件中使用上述语法的话，你必须使用 Vue Router 2.4.0+ 版本。</p>
-</blockquote>
+                <p>1.字符数组初始化<br>在C语言中，字符串是当做字符数组来处理的；所以字符串有两种声明方式，一种是字符数组，一种是字符指针。</p>
+<p>（1）直接逐个初始化字符数组：字符数组的初始化，最容易理解的方式就是逐个字符赋给数组中各元素。</p>
+<p>char str[10]={ ‘I’,’ ‘,’a’,’m’,’ ‘,‘h’,’a’,’p’,’p’,’y’};<br>注意：如果花括号中提供的字符个数大于数组长度，则按语法错误处理；若小于数组长度，则只将这些字符数组中前面那些元素，其余的元素自动定为空字符（即’\0’ )。</p>
+<p>（2）用字符串常量来初始化字符数组：在c语言中，将字符串作为字符数组来处理。因此可以使用字符串来初始化字符数组。</p>
+<p>char str[]={“I am happy”};<br>也可以省略花括号：<br>char str[]=”I am happy”;<br>但是，上述这种字符数组的整体赋值只能在字符数组初始化时使用，不能用于字符数组的赋值，字符数组的赋值只能对其元素一一赋值，下面的赋值方法是错误的。</p>
+<p>char str[];<br>str=”I am happy”;//错误，字符数组的赋值只能按元素一一赋值（错误的原因： C语言并没有提供可以直接操作字符串的运算符；“=”可以用于其他数据类型的赋值，但是不可以直接给字符串赋值。<br>这是字符数组初始化的两种方式，但是这两种方式其实是不等价的；他们的数组长度不同。</p>
+<p>#include&lt;stdio.h&gt;</p>
+<p>int main()<br>{</p>
+<p>char parr[] = “zifuchuanshuzu”;<br>//与charr[]不等价<br>char charr[] = { ‘z’,’i’,’f’,’u’,’c’,’h’,’u’,’a’,’n’,’s’,’h’,’u’,’z’,’u’ };<br>//等价于charr[]<br>char charr_test[] = { ‘z’,’i’,’f’,’u’,’c’,’h’,’u’,’a’,’n’,’s’,’h’,’u’,’z’,’u’ ,’\0’};</p>
+<p>int num_parr = sizeof(parr);<br>int num_charr = sizeof(charr);<br>int num_charr_test = sizeof(charr_test);</p>
+<p>printf(“The parr[] is : %s\n”, parr);<br>printf(“The size of parr[] is : %d\n\n”, num_parr);</p>
+<p>//与charr[]不等价<br>printf(“The charr[] is : %s\n”, charr);<br>printf(“The size of charr[] is : %d\n\n”, num_charr);</p>
+<p>//等价于charr[]<br>printf(“The charr_test[] is : %s\n”, charr_test);<br>printf(“The size of charr_test[] is : %d\n”, num_charr_test);<br>return 0;</p>
+<p>}</p>
+<p>运行结果：</p>
+<p>从结果可以看到第二种初始化方式，打印的结果有问题，但是字符数量没有问题。这是因为字符串默认是以’\0’结束的，第二种初始化方式中没有’\0’,而我们以字符串方式打印，所以出错； </p>
+<p>第一种是系统自动添加了’\0’;我们可以看到其字符数量是15（与第三种相同）。</p>
+<p>（3）字符指针：在C语言中我们也可以使用字符指针来存储字符串。</p>
+<p>  字符指针初始化：</p>
+<p>char* str=”zifuchuanshuzu”;<br>C语言对字符串常量是按照字符数组来处理的，在内存中开辟了一个字符数组用来存放字符串常量，程序在定义字符串指针变量str时，只是把字符串首地址赋值给str。 </p>
+<p>输出：</p>
+<p>printf(“%s\n”,str);<br>系统首先输出str指向的字符，而后自加1，直至遇到’\0’;与数组的输出方式相同。</p>
+<p> 字符指针的赋值：</p>
+<p>char <em>str;<br>str=”zifuzhizhen”;<br>对于字符指针这种赋值方式是正确的。与字符数组不同。<br>2.字符串处理函数：strcpy函数和strcat函数<br>（1）char *strcpy(char *dest,const char</em>src);<br>头文件：string.h和stdio.h </p>
+<p>功能：将src地址开始且包含’\0’结束符的字符串复制到以dest开始的空间。 </p>
+<p>注： 字符数组dest必须是数组名形式，src可以是数组名也可以是字符串常量 可以用strcpy将src的前若干个字符复制到字符数组中.</p>
+<p>（2）char *strcat(char *dest,const char *src);<br>头文件：string.h </p>
+<p>功能： 把src中的内容复制到dest结尾处(覆盖’\0’)。 </p>
+<p>注： src和dest内存区域不可以重叠，dest必须有足够的空间来容纳src； 字符数组dest必须是数组名形式，src可以是数组名也可以是字符串常量； 返回指向dest的指针；</p>
+<p>#include&lt;stdio.h&gt;</p>
+<p>#include&lt;string.h&gt;</p>
+<p>int main()<br>{</p>
+<p>//利用strcpy为字符数组赋值</p>
+<p>char parr[40];</p>
+<p>strcpy(parr,”zifuchuanshuzu”);</p>
+<p>printf(“The parr[] is : %s\n\n”, parr);</p>
+<p>//赋值字符串的一部分</p>
+<p>char charr[] = “_test_strcat_redundance”;</p>
+<p>char tarr[13];</p>
+<p>charr[12] = ‘\0’;<br>//复制charr的前12个字符</p>
+<p> strcpy(tarr, charr);</p>
+<p>printf(“The tarr[] is : %s\n\n”, tarr);</p>
+<p>//字符串链接</p>
+<p>strcat(parr, charr);</p>
+<p>printf(“The parr and tarr[] is : %s\n”, parr);</p>
+<p>return 0;</p>
+<p>}</p>
+<p>结果：</p>
+<p>3.总结<br>（1）在C语言中并没有直接提供字符串的操作，其字符串操作是通过转化为字符串完成的，例如字符数组，字符指针，其本质是对字符的操作。</p>
+<p>（2）作为字符数组，与普通数组相同，区别在于它的每一个元素是一个字符，所以不可以直接用“=”对字符数组赋值（parr[]=”zhifushuzu”，是错误的赋值方式），但是可以对每一个元素进行赋值（charr[12]=’\0’是正确的）。</p>
+<p>（3）字符串一定是以’\0’结尾的；字符数组和字符指针我们当做字符串整体初始化，系统会自动添加’\0’;对于字符数组，如果采用单个字符的方式进行初始化或者赋值一定要考虑结束符’\0’.<br>（4）strcpy和strcat内部也是对字符的操作，以‘\0’作为字符串结束的标志。<br>————————————————<br>版权声明：本文为CSDN博主「魏波-」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。<br>原文链接：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weibo1230123/article/details/82824814">https://blog.csdn.net/weibo1230123/article/details/82824814</a></p>
 
                 
             </div>
@@ -635,7 +454,7 @@ new Vue({
                     </i>
                 </span>
                 <span class="reprint-info">
-                    <a href="https://adg666.gitee.io/2021/02/11/vue-doc/guide/components-dynamic-async/">https://adg666.gitee.io/2021/02/11/vue-doc/guide/components-dynamic-async/</a>
+                    <a href="https://adg666.gitee.io/2021/03/20/c-yu-yan-zhong-zi-fu-shu-zu-de-chu-shi-hua-yu-fu-zhi-zi-fu-chuan-xiang-guan-han-shu/">https://adg666.gitee.io/2021/03/20/c-yu-yan-zhong-zi-fu-shu-zu-de-chu-shi-hua-yu-fu-zhi-zi-fu-chuan-xiang-guan-han-shu/</a>
                 </span>
             </div>
             <div class="reprint__notice">
@@ -716,54 +535,18 @@ new Vue({
 <article id="prenext-posts" class="prev-next articles">
     <div class="row article-row">
         
-        <div class="article col s12 m6" data-aos="fade-up">
+        <div class="article col s12 m6" data-aos="fade-up" data-aos="fade-up">
             <div class="article-badge left-badge text-color">
-                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+                <i class="far fa-dot-circle"></i>&nbsp;本篇
+            </div>
             <div class="card">
-                <a href="/2021/02/11/vue-doc/guide/components-edge-cases/">
+                <a href="/2021/03/20/c-yu-yan-zhong-zi-fu-shu-zu-de-chu-shi-hua-yu-fu-zhi-zi-fu-chuan-xiang-guan-han-shu/">
                     <div class="card-image">
                         
                         
-                        <img src="/medias/featureimages/11.jpg" class="responsive-img" alt="处理边界情况">
+                        <img src="/medias/featureimages/5.jpg" class="responsive-img" alt="C语言中字符数组的初始化与赋值，字符串相关函数！">
                         
-                        <span class="card-title">处理边界情况</span>
-                    </div>
-                </a>
-                <div class="card-content article-content">
-                    <div class="summary block-with-text">
-                        
-                            
-                        
-                    </div>
-                    <div class="publish-info">
-                        <span class="publish-date">
-                            <i class="far fa-clock fa-fw icon-date"></i>2021-02-11
-                        </span>
-                        <span class="publish-author">
-                            
-                            <i class="fas fa-user fa-fw"></i>
-                            ADG
-                            
-                        </span>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
-        
-        
-        <div class="article col s12 m6" data-aos="fade-up">
-            <div class="article-badge right-badge text-color">
-                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
-            </div>
-            <div class="card">
-                <a href="/2021/02/11/vue-doc/guide/components-custom-events/">
-                    <div class="card-image">
-                        
-                        
-                        <img src="/medias/featureimages/12.jpg" class="responsive-img" alt="自定义事件">
-                        
-                        <span class="card-title">自定义事件</span>
+                        <span class="card-title">C语言中字符数组的初始化与赋值，字符串相关函数！</span>
                     </div>
                 </a>
                 <div class="card-content article-content">
@@ -774,7 +557,49 @@ new Vue({
                     </div>
                     <div class="publish-info">
                             <span class="publish-date">
-                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-11
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-03-20
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/c%E8%AF%AD%E8%A8%80/" class="post-category">
+                                    c语言
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2021/02/19/qing-liang-xia-zai-shi-yong-bang-zhu/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/2.jpg" class="responsive-img" alt="轻量下载——使用帮助">
+                        
+                        <span class="card-title">轻量下载——使用帮助</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2021-02-19
                             </span>
                         <span class="publish-author">
                             
@@ -783,6 +608,22 @@ new Vue({
                             
                         </span>
                     </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E8%BD%BB%E9%87%8F%E4%B8%8B%E8%BD%BD/">
+                        <span class="chip bg-color">轻量下载</span>
+                    </a>
+                    
+                    <a href="/tags/%E5%85%B3%E4%BA%8E/">
+                        <span class="chip bg-color">关于</span>
+                    </a>
+                    
+                    <a href="/tags/%E4%BD%BF%E7%94%A8%E6%8C%87%E5%8D%97/">
+                        <span class="chip bg-color">使用指南</span>
+                    </a>
+                    
                 </div>
                 
             </div>
@@ -957,7 +798,7 @@ new Vue({
         <div class="col s12 m8 l8 copy-right">
             Copyright&nbsp;&copy;
             
-                <span id="year">2019-2021</span>
+                <span id="year">2019-2022</span>
             
             <span id="year">2019</span>
             <a href="/about" target="_blank">ADG</a>
@@ -966,7 +807,7 @@ new Vue({
             <br>
             
             &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
-                class="white-color">111.3k</span>&nbsp;字
+                class="white-color">24.9k</span>&nbsp;字
             
             
             
