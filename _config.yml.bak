@@ -1,0 +1,93 @@
+title: CodingFool     #这是网站标题
+subtitle: 'WELCOME TO ADG SANCTUARY'   #这是网站副标题subtitle
+description: '专注于Web,分享生活,分享知识 '   #网站描述
+keywords: null
+author: ADG
+language: zh-CN
+timezone: ''
+
+
+
+
+url: 'https://adg666.gitee.io'
+root: /
+permalink: ':year/:month/:day/:title/'
+permalink_defaults: null
+pretty_urls:
+  trailing_index: true
+  trailing_html: true
+source_dir: source
+public_dir: public
+tag_dir: tags
+archive_dir: archives
+category_dir: categories
+code_dir: downloads/code
+i18n_dir: ':lang'
+skip_render: null
+new_post_name: ':title.md'
+default_layout: post
+titlecase: false
+external_link:
+  enable: true
+  field: site
+  exclude: ''
+filename_case: 0
+render_drafts: false
+post_asset_folder: false
+relative_link: false
+future: true
+highlight:
+  enable: false
+  line_number: true
+  auto_detect: false
+  tab_replace: ''
+  wrap: true
+  hljs: false
+
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  theme: 'tomorrow'
+  line_number: true    # default false
+  custom_css:
+
+
+
+prismjs:
+  enable: false
+  preprocess: true
+  line_number: true
+  tab_replace: ''
+index_generator:
+  path: ''
+  per_page: 10
+  order_by: '-date'
+default_category: uncategorized
+category_map: null
+tag_map: null
+meta_generator: true
+date_format: YYYY-MM-DD
+time_format: 'HH:mm:ss'
+updated_option: mtime
+per_page: 12
+pagination_dir: page
+include: null
+exclude: null
+ignore: null
+theme: hexo-theme-matery
+deploy:
+  - type: git
+    repo: https://github.com/zty0510/zty0510.github.io.git
+    branch: master
+  - type: git
+    repo: https://gitee.com/ADG666/adg666.git
+    branch: master
+    ignore_hidden: false
+
+
+permalink_pinyin:
+  enable: true
+  separator: '-' # default: '-'
+
+search:
+  path: search.xml
+  field: post
